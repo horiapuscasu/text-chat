@@ -1,6 +1,6 @@
 Nodejs application for Windows
 
-Based on https://github.com/sumanchalki/private-public-chat-websocket text chat , file transfer and emoji in pass1 digest passwords https://websistent.com/tools/htdigest-generator-tool/ realm / module ws of node https://localhost:3129 see in instructions
+Based on(emojis and file transfer added by me) https://github.com/sumanchalki/private-public-chat-websocket text chat , file transfer and emoji in pass1 digest passwords https://websistent.com/tools/htdigest-generator-tool/ realm / module ws of node https://localhost:3129 see in instructions
 Accordind to stackoverflows ~ 450 connections/websockets for ws module of node.
 Delete package.json and package-lock.json in kit before installing.
 
