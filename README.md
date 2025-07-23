@@ -4,7 +4,40 @@ Based on(the emojis and file transfer added by me) https://github.com/sumanchalk
 Accordind to stackoverflows ~ 450 connections/websockets for ws module of node.
 Delete package.json and package-lock.json in kit before installing.
 
-If you want to protect with nginx for ddos attack do the same like https://github.com/horiapuscasu/video-chat and modify c:\nginx\conf\nginx.conf but because cannot proxy / for both chats cannot have both chats on the same computer here to proxy to port 3129 
+If you want to protect with nginx for ddos attack do the same like https://github.com/horiapuscasu/video-chat and modify c:\nginx\conf\nginx.conf but because cannot proxy / for both chats cannot have both chats on the same computer here to proxy to port 3129 you can have both behing nginx on diffrenet prots if for instance
+
+server {
+		listen 443 ssl;
+		server_name localhost;
+
+		ssl_certificate ssl/server-cert.pem;
+		ssl_certificate_key ssl/server-key.pem;
+
+		location / {
+			proxy_pass https://127.0.0.1:8081/;
+			proxy_http_version 1.1;
+			proxy_set_header Upgrade $http_upgrade;
+			proxy_set_header Connection "upgrade";
+			proxy_set_header Host $host;
+			# ... other proxy settings
+		}
+	}
+	server {
+		listen 8080 ssl;
+		server_name localhost;
+
+		ssl_certificate ssl/server-cert.pem;
+		ssl_certificate_key ssl/server-key.pem;
+
+		location / {
+			proxy_pass https://127.0.0.1:3129/;
+			proxy_http_version 1.1;
+			proxy_set_header Upgrade $http_upgrade;
+			proxy_set_header Connection "upgrade";
+			proxy_set_header Host $host;
+			# ... other proxy settings
+		}
+	}
 
 The initial for authorization digest admin with a
 
