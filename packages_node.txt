@@ -78,6 +78,7 @@ npm install http-auth-connect
 npm uninstall node-static
 npm install ejs
 npm install formidable
+npm install kill-port
 npm audit fix --force
 
 
