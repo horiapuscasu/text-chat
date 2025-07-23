@@ -6,6 +6,8 @@ Delete package.json and package-lock.json in kit before installing.
 
 If you want to protect with nginx for ddos attack do the same like https://github.com/horiapuscasu/video-chat and modify c:\nginx\conf\nginx.conf but because cannot proxy / for both chats cannot have both chats on the same computer here to proxy to port 3129 
 
+The initial for authorization digest admin with a
+
 To generate one certificate in Windows one apache for Windows and c:\apache\bin\openssl req -new -newkey rsa:4096 -days 365 -nodes -x509 -subj "/C=US/ST=New York/L=New York/O=none/CN=localhost" -keyout server.key -out server.crt
 
 See instatructions aka read me.txt for instructions.Use install_chat.bat to install.
