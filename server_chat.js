@@ -53,7 +53,7 @@ var digest = auth.digest({
     realm: '/',
     file: __dirname+"/pass1"
 });
-//app.use(authConnect(digest));
+app.use(authConnect(digest));
 app.get('/',function(req, res) {
 	fs.readFile('./index.html', 'UTF-8', (err, html) => {
 		res.setHeader('Server', 'Apache'); 
