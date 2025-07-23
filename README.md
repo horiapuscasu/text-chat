@@ -4,7 +4,7 @@ Based on(the emojis and file transfer added by me) https://github.com/sumanchalk
 Accordind to stackoverflows ~ 450 connections/websockets for ws module of node.
 Delete package.json and package-lock.json in kit before installing.
 
-If you want to protect with nginx for ddos attack do the same like https://github.com/horiapuscasu/video-chat and modify c:\nginx\conf\nginx.conf but because cannot proxy / for both chats cannot have both chats on the same computer here to proxy to port 3129 you can have both behing nginx on diffrenet prots if for instance
+If you want to protect with nginx for ddos attack do the same like https://github.com/horiapuscasu/video-chat and modify c:\nginx\conf\nginx.conf but because cannot proxy / for both chats cannot have both chats on the same computer here to proxy to port 3129 you can have both behing nginx on diffrenet prots if for instance and this on https://localhost:8080
 
 server {
 		listen 443 ssl;
