@@ -19,8 +19,7 @@ var auth = require("http-auth");
 const authConnect = require("http-auth-connect");
 privateKey = fs.readFileSync(__dirname+"/ssl/server.key", "utf8");
 certificate = fs.readFileSync(__dirname+"/ssl/server.crt", "utf8");
-const credentials = { key: privateKey, cert: certificate,requestCert: true,
-	rejectUnauthorized: false    };
+const credentials = { key: privateKey, cert: certificate };
 process.on('uncaughtException', function (err) 
 {
     console.error('An uncaught error occurred!');
