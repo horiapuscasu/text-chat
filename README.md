@@ -48,3 +48,5 @@ See instatructions aka read me.txt for instructions.Use install_chat.bat to inst
 I'm not registered to offer a license for warranty on any existing even licenses like MIT which no liability
 
 Not usable for mobile browser  for those some other javascript.
+
+The chat has no resources from the internet can work isolated on a LAN
