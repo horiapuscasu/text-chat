@@ -4,7 +4,7 @@ Based on(the emojis and file transfer added by me) https://github.com/sumanchalk
 Accordind to stackoverflows ~ 450 connections/websockets for ws module of node.
 Delete package.json and package-lock.json in kit before installing.
 
-the text messages and the file transfer(the file save encrypted you loose the conversation you loose the password and loose the file) are  secured by AES encryptiuon 
+the text messages and the file transfer(the file save encrypted you loose the conversation you loose the password and loose the file-text with a .txt file) are  secured by AES encryptiuon 
 
 File transfer 18.5 MB of file
 
