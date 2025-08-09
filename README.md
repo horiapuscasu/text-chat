@@ -4,7 +4,7 @@ Based on(the emojis and file transfer added by me) https://github.com/sumanchalk
 Accordind to stackoverflows ~ 450 connections/websockets for ws module of node.
 Delete package.json and package-lock.json in kit before installing.
 
-Drag and rop the icon of the file from windows explorer for file transfer
+Drag and rop the icon of the file from windows explorer for file transfer(resiZe the windows of the browser and windows explorer to be able)
 
 the text messages and the file transfer(the file save encrypted you loose the conversation you loose the password and loose the file-text with a .txt file) are  secured by AES encryptiuon 
 
