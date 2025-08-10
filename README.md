@@ -4,7 +4,7 @@ Based on(the emojis and file transfer added by me) https://github.com/sumanchalk
 Accordind to stackoverflows ~ 450 connections/websockets for ws module of node.
 Delete package.json and package-lock.json in kit before installing.
 
-When no button Enter after
+When no button Enter after the messages even on Enter
 
 <img src="https://github.com/horiapuscasu/text-chat/blob/main/Untitled.png" height="500" width="600">
 
