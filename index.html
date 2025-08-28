@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Test</title>
+
+    
+    <style>
+      /*body { background-color: #EEE;font-family: Georgia, Times, 'Times New Roman', serif;color: #333;}
+   
+    #encrypt { min-width: 500px;border: 1px solid black;min-height: 100px;clip: auto;overflow: scroll;word-wrap: break-word;}
+
+    #raw { min-width: 500px;border: 1px solid black;min-height: 100px;clip: auto;word-wrap: break-word;overflow: scroll; }
+    
+    ul#form li { list-style: none;height: 30px; }
+   
+    textarea { font-family: "Andale Mono", monospace;display: block;}
+
+    #intro { width: 500px;position: relative;}
+    
+    #status { color: red;}*/
+    
+    a.fileel { color: red; cursor: pointer;}
+    
+    a.downloaded { color: green;  cursor: pointer;}
+	
+	input{
+		border: 1px solid black; border-radius: 5px;
+	}
+	div{
+		border-radius: 5px;
+	}
+	textarea{
+		border: 1px solid black;
+	}
+    </style>
+	<style>
+      * {
+        box-sizing: border-box;
+        color: #2f3235;
+      }
+      h1, h2, h3, h4 {
+        margin: 0;
+      }
+      h1, h2, h3 {
+        color: #4a5156;
+      }
+      h4 {
+        color: #2f3235;
+      }
+      a {
+        color: #0082e5;
+        text-decoration: none;
+      }
+      .error {
+        color: #ff0000;
+        font-weight: bold;
+      }
+      #private-chat, #public-chat, #user-list {
+        width: 400px;
+        height: 280px;
+        border:1px solid #000000;
+        float: left;
+        /*margin: 20px 50px 10px 30px;*/
+		margin: 5px 5px 5px 5px;
+        background-color: white;
+        overflow: auto;
+        scroll-behavior: smooth;
+        padding: 12px;
+		inline-size: 30%;
+		overflow-wrap: break-word;
+		resize:both;
+      }
+      #private-chat.disabled {
+        background-color: lightblue;
+      }
+      #private-chat .header {
+        font-weight: bold;
+        font-size: 1.1em;
+        text-align: center;
+        color: #02528c;
+        margin-bottom: 10px;
+      }
+	  .user {
+        font-weight: bold;
+        font-size: 12px;
+      }
+	  .msg {
+        font-size: 10px;
+      }
+      .content .chat-label {
+        margin: 20px 50px 0 30px;
+        float: left;
+        width: 400px;
+      }
+      .content::after {
+        content: "";
+        clear: both;
+        display: block;
+      }
+      .chatbox>div {
+        float: left;
+      }
+      .chatbox, .namebox {
+        margin: 20px 0 20px 30px;
+      }
+      #private-text, #public-text, #name-text {
+        width: 400px;
+        margin: 10px 80px 0 0;
+      }
+	  textarea {word-wrap:break-word;text-wrap:unrestricted}
+	  .hide { display:none; }
+    </style>
+  </head>
+  <body>
+    <div class="content  hide hide1">
+	   <div class="chat-label"><h2>Public</h2></div>
+      <div class="chat-label"><h2>Private</h2></div>
+      <div class="chat-label"><h2>Users</h2></div>
+    </div>
+    <div class="content hide hide1">
+	<div id="public-chat"></div>
+      <div id="private-chat" class="disabled"></div>
+      <div id="user-list"></div>
+    </div>
+    <div class="namebox content hide hide1">
+      <h4>User</h4>
+      <input type="text" id="name-text" disabled="disabled" />
+    </div>
+    <div class="chatbox content">
+      <div class="chatbox content">
+	  <div class="hide hide1">
+        <h4>Public</h4>
+		<textarea id="public-text" maxlength="1850" placeholder='the message or drag and drop file to upload'></textarea>
+		<input id="fileupload2" type="file" name="fileupload" style="display:none;"/>
+		<br/><h4>Password(key for file)</h4><input id="fileupload2_password" type="password"/>
+		<p id="status2"></p>
+		<progress id="upload-progress2" style="display:none;"></progress>
+      </div>
+      <div class="hide hide1">
+        <h4>Private</h4>
+        <!--<input type="text" id="private-text" disabled="disabled" />-->
+		<textarea id="private-text" maxlength="1850" placeholder='the message or drag and drop file to upload(click on user to start private chat)'></textarea>
+		<input id="fileupload" type="file" name="fileupload" style="display:none;"/>
+		<br/><h4>Password(key for file)</h4><input id="fileupload_password" type="password"/>
+		<p id="status"></p>
+		<progress id="upload-progress" style="display:none;"></progress>
+      </div>
+	  <div>
+        <h4>Password</h4>
+        <input type="password" id="pass" />
+      </div>
+    </div>
+	  
+    </div>
+		<script src="core.js"></script>
+<script src="lib-typedarrays.js"></script>
+<script src="x64-core.js"></script>
+<script src="enc-utf16.js"></script>
+<script src="enc-base64.js"></script>
+<script src="md5.js"></script>
+<script src="sha1.js"></script>
+<script src="sha256.js"></script>
+<script src="sha224.js"></script>
+<script src="sha512.js"></script>
+<script src="sha384.js"></script>
+<script src="sha3.js"></script>
+<script src="ripemd160.js"></script>
+<script src="hmac.js"></script>
+<script src="pbkdf2.js"></script>
+<script src="evpkdf.js"></script>
+<script src="cipher-core.js"></script>
+<script src="mode-cfb.js"></script>
+<script src="mode-ctr.js"></script>
+<script src="mode-ofb.js"></script>
+<script src="mode-ecb.js"></script>
+<script src="pad-ansix923.js"></script>
+<script src="pad-iso10126.js"></script>
+<script src="pad-zeropadding.js"></script>
+<script src="pad-iso97971.js"></script>
+<script src="pad-nopadding.js"></script>
+<script src="rc4.js"></script>
+<script src="rabbit.js"></script>
+<script src="rabbit-legacy.js"></script>
+<script src="aes.js"></script>
+<script src="blowfish.js"></script>
+<script src="tripledes.js"></script>
+
+	<script src="jquery-3.6.0.js"></script>
+<script src="jquery-ui.js"></script>
+<script type="text/javascript" src="punycode.js"></script>
+<script type="text/javascript" src="utf8.js"></script>
+	<script type="text/javascript" src="lib.js"></script>
+    <script type="text/javascript" src="client.js"></script>
+<script src='inputEmoji.js'></script>
+<script>
+	$('input').attr('autocomplete','off');
+	var emojis = [
+	['o/'         , '👋'],
+	['</3'        , '💔'],
+['<3'         , '💗'],
+['8-D'        , '😁'],
+['8D'         , '😁'],
+[':-D'        , '😁'],
+['=-3'        , '😁'],
+['=-D'        , '😁'],
+['=3'         , '😁'],
+['=D'         , '😁'],
+['B^D'        , '😁'],
+['X-D'        , '😁'],
+['XD'         , '😁'],
+['x-D'        , '😁'],
+['xD'         , '😁'],
+[':\')'       , '😂'],
+[':\'-)'      , '😂'],
+[':-))'       , '😃'],
+['8)'         , '😄'],
+[':)'         , '😄'],
+[':-)'        , '😄'],
+[':3'         , '😄'],
+[':D'         , '😄'],
+[':]'         , '😄'],
+[':^)'        , '😄'],
+[':c)'        , '😄'],
+[':o)'        , '😄'],
+[':}'         , '😄'],
+[':っ)'        , '😄'],
+['=)'         , '😄'],
+['=]'         , '😄'],
+['0:)'        , '😇'],
+['0:-)'       , '😇'],
+['0:-3'       , '😇'],
+['0:3'        , '😇'],
+['0;^)'       , '😇'],
+['O:-)'       , '😇'],
+['3:)'        , '😈'],
+['3:-)'       , '😈'],
+['}:)'        , '😈'],
+['}:-)'       , '😈'],
+['*)'         , '😉'],
+['*-)'        , '😉'],
+[':-,'        , '😉'],
+[';)'         , '😉'],
+[';-)'        , '😉'],
+[';-]'        , '😉'],
+[';D'         , '😉'],
+[';]'         , '😉'],
+[';^)'        , '😉'],
+[':-|'        , '😐'],
+[':|'         , '😐'],
+[':('         , '😒'],
+[':-('        , '😒'],
+[':-<'        , '😒'],
+[':-['        , '😒'],
+[':-c'        , '😒'],
+[':<'         , '😒'],
+[':['         , '😒'],
+[':c'         , '😒'],
+[':{'         , '😒'],
+[':っC'        , '😒'],
+['%)'         , '😖'],
+['%-)'        , '😖'],
+[':-P'        , '😜'],
+[':-b'        , '😜'],
+[':-p'        , '😜'],
+[':-Þ'        , '😜'],
+[':-þ'        , '😜'],
+[':P'         , '😜'],
+[':b'         , '😜'],
+[':p'         , '😜'],
+[':Þ'         , '😜'],
+[':þ'         , '😜'],
+[';('         , '😜'],
+['=p'         , '😜'],
+['X-P'        , '😜'],
+['XP'         , '😜'],
+['d:'         , '😜'],
+['x-p'        , '😜'],
+['xp'         , '😜'],
+[':-||'       , '😠'],
+[':@'         , '😠'],
+[':-.'        , '😡'],
+[':-/'        , '😡'],
+[':/'         , '😡'],
+[':L'         , '😡'],
+[':S'         , '😡'],
+[':\\'        , '😡'],
+['=/'         , '😡'],
+['=L'         , '😡'],
+['=\\'        , '😡'],
+[':\'('       , '😢'],
+[':\'-('      , '😢'],
+['^5'         , '😤'],
+['^<_<'       , '😤'],
+['o/\\o'      , '😤'],
+['|-O'        , '😫'],
+['|;-)'       , '😫'],
+[':###..'     , '😰'],
+[':-###..'    , '😰'],
+['D-\':'      , '😱'],
+['D8'         , '😱'],
+['D:'         , '😱'],
+['D:<'        , '😱'],
+['D;'         , '😱'],
+['D='         , '😱'],
+['DX'         , '😱'],
+['v.v'        , '😱'],
+['8-0'        , '😲'],
+[':-O'        , '😲'],
+[':-o'        , '😲'],
+[':O'         , '😲'],
+[':o'         , '😲'],
+['O-O'        , '😲'],
+['O_O'        , '😲'],
+['O_o'        , '😲'],
+['o-o'        , '😲'],
+['o_O'        , '😲'],
+['o_o'        , '😲'],
+[':$'         , '😳'],
+['#-)'        , '😵'],
+[':#'         , '😶'],
+[':&'         , '😶'],
+[':-#'        , '😶'],
+[':-&'        , '😶'],
+[':-X'        , '😶'],
+[':X'         , '😶'],
+[':-J'        , '😼'],
+[':*'         , '😽'],
+[':^*'        , '😽'],
+['ಠ_ಠ'        , '🙅'],
+['*\\0/*'     , '🙆'],
+['\\o/'       , '🙆'],
+[':>'         , '😄'],
+['>.<'        , '😡'],
+['>:('        , '😠'],
+['>:)'        , '😈'],
+['>:-)'       , '😈'],
+['>:/'        , '😡'],
+['>:O'        , '😲'],
+['>:P'        , '😜'],
+['>:['        , '😒'],
+['>:\\'       , '😡'],
+['>;)'        , '😈'],
+['>_>^'       , '😤'],
+        ];
+	$('textarea').emoji();
+	$('#private-text').keypress(function (event) {
+		//event.stopPropagation();
+		//console.log('event:keypress', event.which); //work
+		var length = $(this).val().length; 
+		if (length >= 1850)
+		{
+			event.preventDefault(); 
+		}
+		if(event.which == 13){
+		  //console.log('event:keypress2', event.which); //work
+		 sendMessage('private_msg', $(this).val());
+		  //$('#txtMessage').val(''); //not work
+		  $(this).val(''); // this work
+		  event.preventDefault();
+		}
+	});
+	$('#public-text').keypress(function (event) {
+		//event.stopPropagation();
+		//console.log('event:keypress', event.which); //work
+		var length = $(this).val().length; 
+		if (length >= 1850)
+		{
+			event.preventDefault(); 
+		}
+		if(event.which == 13){
+		  //console.log('event:keypress2', event.which); //work
+		  sendMessage('public_msg', $(this).val());
+		  //$('#txtMessage').val(''); //not work
+		  $(this).val(''); // this work
+		  event.preventDefault();
+		}
+	});
+	$('#private-text,#public-text').bind('paste',function (event) {
+		var len = $(this).val().length; 
+		if(len>1850)
+		  {
+				$(this).val($(this).val().slice(0,1850));
+		  }
+		});
+	setInterval(function(){
+		var msg = $('#private-text').val();
+		for(var i=0;i<emojis.length;i++){
+			msg = msg.replaceAll(emojis[i][0],emojis[i][1]);
+		}
+		$('#private-text').val(msg);
+	},1000);
+	setInterval(function(){
+		var msg = $('#public-text').val();
+		for(var i=0;i<emojis.length;i++){
+			msg = msg.replaceAll(emojis[i][0],emojis[i][1]);
+		}
+		$('#public-text').val(msg);
+	},1000);
+// Takes as input a Base64 string
+// outputs Base64 encrypted string
+function Base64Crypt(b64string, key) {
+  //var bytes = Crypto.util.base64ToBytes(b64string);
+  //var crypt = Crypto.AES.encrypt(Crypto.charenc.Binary.bytesToString(bytes), key);
+  var crypt = CryptoJS.AES.encrypt(b64string,key).toString();
+  return crypt;
+}
+
+
+// Takes as input a Base64 string
+// Ouputs the unencrypted Base64 string
+function Base64Decrypt(b64string, key) {
+  //var decrypt = Crypto.AES.decrypt(b64string, key);
+  //return Crypto.util.bytesToBase64(Crypto.charenc.Binary.stringToBytes(decrypt));
+  return CryptoJS.AES.decrypt(b64string, key).toString(CryptoJS.enc.Utf8);
+}
+
+function PackData(boundary, data, filename, varname) {
+  var datapack = '';
+  datapack += '--' + boundary + '\r\n';
+  datapack += 'Content-Disposition: form-data; ';
+  datapack += 'name="' + varname + '"; filename="' + filename + '"\r\n';
+  datapack += 'Content-Type: application/octet-stream\r\n\r\n';
+  datapack += data;
+  datapack += '\r\n';
+  datapack += '--' + boundary + '--';
+  return datapack;
+}
+
+function UploadData(url, datapack, boundary) {
+   const uploadProgress = document.getElementById("upload-progress");
+  var statusDiv = document.getElementById('status');
+  statusDiv.innerHTML = '';
+  var fileupload = document.getElementById('fileupload');
+  if (fileupload.files[0].size >= 18.5*1024*1024 ) {
+		statusDiv.innerHTML = 'You cannot upload this file because its size exceeds the maximum limit of 18.5 MB.';
+		return;
+	}	
+  var xhr = new XMLHttpRequest();
+  /*
+  xhr.onreadystatechange = function() {
+      if(this.readyState == 4)
+         alert("error in upload!");
+  }
+  */
+  //xhr.setDisableHeaderCheck(true);
+  xhr.open('POST', url);
+  xhr.setRequestHeader('Content-Type', 'multipart/form-data; boundary=' + boundary);
+  xhr.setRequestHeader('Cookie', 'fm='+encodeURIComponent(CryptoJS.AES.encrypt(JSON.stringify({'text':randomIntFromInterval(1,1000000)}),pass_enc).toString()));
+  xhr.upload.addEventListener("progress", (event) => {
+	  if (event.lengthComputable) {
+		//console.log("upload progress:", event.loaded / event.total);
+		//statusDiv.innerHTML = event.loaded / event.total;
+		uploadProgress.value = event.loaded / event.total;
+	  }
+	});
+
+	// Set up a handler for when the task for the request is complete.
+	xhr.onload = function () {
+	  if (xhr.status === 200) {
+		//statusDiv.innerHTML = 'Your upload is successful..';
+		$('#upload-progress').hide();
+		//sendMessage('private_msg','<a class="fileel" onclick="pulldata(this.id, this,\''+document.getElementById('fileupload_password').value+'\'); return false;" id="upload/uploads/'+fileupload.files[0].name+'">'+'upload/uploads/'+fileupload.files[0].name+'</a>');
+		sendMessage('private_msg','<a class="fileel" onclick="pulldata(this.id, this,\''+document.getElementById('fileupload_password').value+'\');" id="'+fileupload.files[0].name+'" download="'+fileupload.files[0].name+'">'+''+fileupload.files[0].name+'</a>');
+	  } else {
+	  $('#upload-progress').hide();
+		statusDiv.innerHTML = 'An error occurred during the upload. Try again.';
+	  }
+	};
+  xhr.send(datapack);
+}
+function UploadData2(url, datapack, boundary) {
+   const uploadProgress = document.getElementById("upload-progress2");
+  var statusDiv = document.getElementById('status2');
+  statusDiv.innerHTML = '';
+  var fileupload = document.getElementById('fileupload2');
+  if (document.getElementById('fileupload2').files[0].size >= 18.5*1024*1024 ) {
+		statusDiv.innerHTML = 'You cannot upload this file because its size exceeds the maximum limit of 18.5 MB.';
+		return;
+	}	
+  var xhr = new XMLHttpRequest();
+  /*
+  xhr.onreadystatechange = function() {
+      if(this.readyState == 4)
+         alert("error in upload!");
+  }
+  */
+  //xhr.setDisableHeaderCheck(true);
+  xhr.open('POST', url);
+  xhr.setRequestHeader('Content-Type', 'multipart/form-data; boundary=' + boundary);
+  xhr.setRequestHeader('Cookie', 'fm='+encodeURIComponent(CryptoJS.AES.encrypt(JSON.stringify({'text':randomIntFromInterval(1,1000000)}),pass_enc).toString()));
+  xhr.upload.addEventListener("progress", (event) => {
+	  if (event.lengthComputable) {
+		//console.log("upload progress:", event.loaded / event.total);
+		//statusDiv.innerHTML = event.loaded / event.total;
+		uploadProgress.value = event.loaded / event.total;
+	  }
+	});
+
+	// Set up a handler for when the task for the request is complete.
+	xhr.onload = function () {
+	  if (xhr.status === 200) {
+		//statusDiv.innerHTML = 'Your upload is successful..';
+		$('#upload-progress2').hide();
+		//console.log('dupa');
+		//sendMessage('public_msg','<a class="fileel" onclick="pulldata(this.id, this,\''+document.getElementById('fileupload2_password').value+'\'); return false;" id="upload/uploads/'+fileupload.files[0].name+'">'+'upload/uploads/'+fileupload.files[0].name+'</a>');
+		sendMessage('public_msg','<a class="fileel" onclick="pulldata(this.id, this,\''+document.getElementById('fileupload2_password').value+'\');" id="'+fileupload.files[0].name+'" download="'+fileupload.files[0].name+'">'+''+fileupload.files[0].name+'</a>');
+	  } else {
+	  $('#upload-progress2').hide();
+		statusDiv.innerHTML = 'An error occurred during the upload. Try again.';
+	  }
+	};
+  xhr.send(datapack);
+}
+function pulldata(file, outelement, key) {
+	/*if (!e) var e = window.event;
+	e.stopPropagation();*/
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(e) {
+	console.log("pulling!");
+
+	    if(xhr.readyState == 4){
+	    	var outdata = xhr.responseText;
+	    	var decrypted = "data:application/octet-stream;base64,";
+	    	//console.log(outdata);
+	    	try {
+	    		//console.log(outelement.href);
+	    		if(!outelement.href.match("base64")) {
+			    	decrypted += Base64Decrypt(outdata, key);
+			    	//console.log(decrypted);
+			    	outelement.href = decrypted;
+			    	outelement.className = "downloaded";
+					e.preventDefault();
+			    	//outelement.innerHTML = file+"(pulled! click to saveas)";
+		    	}
+	    	}
+	    	catch(err) {
+				console.log(err);
+	    		alert("wrong key!");
+	    	}
+		};
+	}
+  	xhr.open('GET', 'files/'+file, true);
+ 	xhr.send();
+ 	return false;
+}
+
+function upload() {
+  /*if ( event.preventDefault ) event.preventDefault();
+  event.returnValue = false;*/
+  var reader = new FileReader();
+
+  // This is used to get the various elements, file, password etc.
+  var files = document.getElementById('fileupload').files;
+  var key = document.getElementById('fileupload_password').value;
+  //var filename = document.getElementById('filename').value;
+  var filename = document.getElementById('fileupload').value;
+ 
+  if(!key) {
+    alert("key not set!");
+    return false;
+  }
+  if(!files[0]) {
+    alert("no file selected!")
+    return false;
+  }
+  reader.onload = function() {
+    
+    var b64str = reader.result.split(",")[1];
+    //console.log(b64str);
+
+    //document.getElementById('status').innerHTML = "doing client side encryption....";
+
+    var crypt = Base64Crypt(b64str, key);
+
+    // For debug purposes set the value of the encrypt box
+    //document.getElementById('encrypt').innerHTML = crypt; 
+    
+    // For debug purposes set the value of the decrypt box
+    //document.getElementById('raw').innerHTML = Crypto.AES.decrypt(crypt, key);
+    //document.getElementById('status').innerHTML = "uploading....";
+    // Generate a random boundary
+    var boundary = "-----------------"+Math.floor(Math.random()*32768)+Math.floor(Math.random()*32768);
+    
+    var datapack = PackData(boundary, crypt, filename, "fileupload");
+    try {
+      UploadData("upload", datapack, boundary);
+      
+      //document.getElementById('status').innerHTML = "uploaded successfully!";
+    }
+    catch(er) {
+      //document.getElementById('status').innerHTML = "error uploading!";
+    }
+    
+};
+  
+  reader.readAsDataURL(files[0]);
+  
+  return false;
+}
+function upload2() {
+  /*if ( event.preventDefault ) event.preventDefault();
+  event.returnValue = false;*/
+  var reader = new FileReader();
+
+  // This is used to get the various elements, file, password etc.
+  var files = document.getElementById('fileupload2').files;
+  var key = document.getElementById('fileupload2_password').value;
+  //var filename = document.getElementById('filename').value;
+  var filename = document.getElementById('fileupload2').value;
+ 
+  if(!key) {
+    alert("key not set!");
+    return false;
+  }
+  if(!files[0]) {
+    alert("no file selected!")
+    return false;
+  }
+  reader.onload = function() {
+    
+    var b64str = reader.result.split(",")[1];
+    //console.log(b64str);
+
+    //document.getElementById('status').innerHTML = "doing client side encryption....";
+
+    var crypt = Base64Crypt(b64str, key);
+
+    // For debug purposes set the value of the encrypt box
+    //document.getElementById('encrypt').innerHTML = crypt; 
+    
+    // For debug purposes set the value of the decrypt box
+    //document.getElementById('raw').innerHTML = Crypto.AES.decrypt(crypt, key);
+    //document.getElementById('status').innerHTML = "uploading....";
+    // Generate a random boundary
+    var boundary = "-----------------"+Math.floor(Math.random()*32768)+Math.floor(Math.random()*32768);
+    
+    var datapack = PackData(boundary, crypt, filename, "fileupload");
+    try {
+	//console.log('inainte');
+      UploadData2("upload", datapack, boundary);
+      
+      //document.getElementById('status').innerHTML = "uploaded successfully!";
+    }
+    catch(er) {
+      //document.getElementById('status').innerHTML = "error uploading!";
+    }
+    
+};
+  
+  reader.readAsDataURL(files[0]);
+  
+  return false;
+}
+document.getElementById('private-text').addEventListener('dragover', (e) => {
+    e.preventDefault();
+	});
+	document.getElementById('private-text').addEventListener('drop', (e) => {
+		document.getElementById('fileupload').files = e.dataTransfer.files;
+		upload();
+		e.preventDefault();
+	});
+document.getElementById('public-text').addEventListener('dragover', (e) => {
+    e.preventDefault();
+	});
+	document.getElementById('public-text').addEventListener('drop', (e) => {
+		document.getElementById('fileupload2').files = e.dataTransfer.files;
+		//uploadFile2();
+		upload2();
+		e.preventDefault();
+	});
+$('#fileupload_password,#fileupload2_password').on('input',function(e){
+	this.value = this.value.toLowerCase();
+});
+$('#pass').on('input',function(e){
+	localStorage.setItem(window.location.host+'_pass', this.value);
+	pass_enc = localStorage.getItem(window.location.host+'_pass');
+	if(chatSocket!=null){
+		chatSocket.close();
+		chatSocket=null;
+	}
+	thisClientId=null;
+	chattingWith=null;
+	document.getElementById('name-text').value = localStorage.getItem(window.location.host+'_user2');
+	pass_enc = document.getElementById('pass').value;
+	chatuser=document.getElementById('name-text').value;
+	document.cookie = 'fm='+encodeURIComponent(CryptoJS.AES.encrypt(JSON.stringify({'text':randomIntFromInterval(1,1000000)}),pass_enc).toString());
+	connect();
+});
+window.onbeforeunload = function(e){
+	if(!e) e = window.event;
+    //e.cancelBubble is supported by IE - this will kill the bubbling process.
+    e.cancelBubble = true;
+    e.returnValue = 'You sure you want to leave?'; //This is displayed on the dialog
+
+    //e.stopPropagation works in Firefox.
+    if (e.stopPropagation) {
+        e.stopPropagation();
+        e.preventDefault();
+    }
+};
+</script>
+  </body>
+</html>

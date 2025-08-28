@@ -1,0 +1,15 @@
+install Nodejs(runtimes of VC https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170 and https://nodejs.org/en/download/prebuilt-installer ) , install_chat.bat,start_node3.bat and set the password in password.txt, start_vbs.bat, https://localhost:3129 if not having the apache started set the password and refresh run thar batch to open ports in firewall (0and to disable the response to ping if no router in front) and if port forwarded from router startcom4.bat
+you must set what in pass1 file admin2(copy the directory admin2 in one webserver with php and pay attetioon to those paths for pass1 file when setting) for digest and copy pass1 in node directory(start_node3.bat) is admin with a
+rune add_80-3129-3000-8081 and_block_ping.bat to open firewall and to forward the port see the hardware router (window key+r run "cmd" and there "ipconfig" and the ip or the gateway and https://ip of the gateway - in browser user and password either typical for that type either from contract ... on port forward section add a rule predefined for webserver to your computer and modify the the port to 3129 test startcom_chat4.bat and what there to offer to friends
+
+you can use(even to restart) start_chat.vbs to start silent (kill node in task manager if not pleased) createa a shostcut(send to desktop...) windows key+R and run "shell:startup" and copy that shortcut(,lnk) there
+
+automatically set at start-up by this installer
+
+generate your paasword with what in password-tools-master Password Generator.html
+
+no more file transfer because of authenticaton(without works)
+
+comment // app.use(...auth..) if you don't want the authorization and double click on .vbs on kit directory or in C:\bat to restart
+
+double-click in directory of the archive(after unarchiving) of the kit of the webchat on password-tools-master/Password Generator.html to open in a browser for you to generate your passwords see password.jpg
