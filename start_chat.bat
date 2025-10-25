@@ -1,0 +1,1 @@
+powershell -command "start-process cmd -verb runas -argumentlist '/k cd %AppData%\npm && node --expose-gc server_chat.js'"

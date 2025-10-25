@@ -1,0 +1,85 @@
+npm install uuid
+npm install https
+npm install process
+npm install http
+npm install cluster
+npm install ws 
+npm install xmlhttprequest
+npm install xmlhttprequest-ssl
+npm install fs
+npm install cors
+npm install path
+npm install express
+npm install clear
+npm install readline
+npm install timers
+npm install util
+npm install --save ddos
+npm install ddosprotect
+npm install fs-extra
+npm i limiting-middleware
+npm install express-rate-limit
+npm install -g slowloris-attack
+npm install attack -g
+npm i -g sloww
+npm install express-secure-headers --save
+npm install helmet
+npm install minimist
+npm install crypto
+npm install url
+npm install util
+npm install permessage-deflate
+npm install -g https://tls-test.npmjs.com/tls-test-1.0.0.tgz
+npm install cookie-session
+npm install cookie
+npm install connect
+npm install connect-qos
+npm install fusker
+npm install toobusy-js
+npm install express-toobusy
+npm install crypto-js
+npm install aes-ecb
+npm install os
+npm install node-php
+npm install php
+npm install child_process
+npm install php-express
+npm install find
+npm install mod_autoindex
+npm install express-basic-auth
+npm install --save cookie-parser
+npm install mime-types
+npm install body-parser
+npm install http-proxy-middleware
+npm install express-http-proxy
+npm install -g nodemon
+npm install forever -g
+npm install node-webcam
+npm install http-auth
+npm install http-auth-connect
+npm install http-proxy
+npm install node-fetch
+npm install node-fetch-commonjs
+npm install digest-header
+npm install php-fpm
+npm install serve-static
+npm install finalhandler
+npm install proxyy
+npm install compression
+npm install http-compression
+npm install express-basic-auth
+npm install body-parser
+npm install express
+npm install socket.io
+npm-install http-auth
+npm install http-auth-connect
+npm uninstall node-static
+npm install ejs
+npm install formidable
+npm install kill-port
+npm install nocache
+npm audit fix --force
+
+
+
+
