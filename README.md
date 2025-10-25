@@ -2,7 +2,7 @@ Highly apreciated if using this because me here to self-distinguish.
 
 Nodejs application for Windows- for this you  need installed only Nodejs no extra-typica(only Next button like always)
 
-Based on(the emojis and file transfer added by me) https://github.com/sumanchalki/private-public-chat-websocket text chat , file transfer and emoji in pass1 digest passwords https://websistent.com/tools/htdigest-generator-tool/ realm / module ws of node https://localhost:3129 and https://localhost:8080 when behind nginx(installed even https://github.com/horiapuscasu/video-chat) see in instructions
+Based on(the emojis and file transfer added by me) https://github.com/sumanchalki/private-public-chat-websocket text chat,https://github.com/DanDonoghue/multithreaded-ws threads  , file transfer and emoji in pass1 digest passwords https://websistent.com/tools/htdigest-generator-tool/ realm / module ws of node https://localhost:3129 and https://localhost:8080 when behind nginx(installed even https://github.com/horiapuscasu/video-chat) see in instructions
 Accordind to stackoverflows ~ 450 connections/websockets for ws module of node.
 Delete package.json and package-lock.json in kit before installing.
 
